@@ -90,6 +90,10 @@ export default class Merge extends Command {
             baseBranch,
         );
 
+        this.log(
+            `After processing exclude filters, we have ${branchesToProcess.length} branches`,
+        );
+
         branchesToProcess.forEach((branch) => this.log(` > ${branch}`));
 
         // https://stackoverflow.com/a/501461/3016520
