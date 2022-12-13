@@ -76,7 +76,6 @@ export default class Merge extends Command {
         );
 
         console.log(branchesToProcess);
-        this.exit(0);
 
         // https://stackoverflow.com/a/501461/3016520
 
@@ -99,6 +98,8 @@ export default class Merge extends Command {
                 failedBranches.push(branch);
             }
         }
+
+        console.log({ branchMap, failedBranches });
     }
 
     private filterIncludedBranches(branches: string[], includeRegex: string[]) {
