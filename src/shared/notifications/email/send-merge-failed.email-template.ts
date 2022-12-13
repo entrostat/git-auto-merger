@@ -127,7 +127,6 @@ table.body .article {
                         } branches failed to merge. The branches are listed below.</p>
                         <br>
                         <br>
-                        <br>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                           <thead>
                             <tr>
