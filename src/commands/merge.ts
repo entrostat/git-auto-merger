@@ -90,6 +90,8 @@ export default class Merge extends Command {
             baseBranch,
         );
 
+        branchesToProcess.forEach((branch) => this.log(` > ${branch}`));
+
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
