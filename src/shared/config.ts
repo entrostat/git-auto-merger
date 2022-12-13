@@ -5,5 +5,6 @@ export interface Config {
         host: string;
         port: number;
         tls: boolean;
+        fromAddress: string;
     };
 }

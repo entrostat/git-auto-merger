@@ -31,6 +31,17 @@ export default class Merge extends Command {
             multiple: true,
             required: false,
         }),
+        'notification-project-name': Flags.string({
+            char: 'n',
+            description:
+                'The name of the project when sending the notification',
+            relationships: [
+                {
+                    type: 'some',
+                    flags: ['send-notification-smtp'],
+                },
+            ],
+        }),
         'send-notification-smtp': Flags.boolean({
             char: 'm',
             description:
