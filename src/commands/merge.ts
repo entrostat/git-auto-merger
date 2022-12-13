@@ -72,9 +72,33 @@ export default class Merge extends Command {
         const branchesToProcess = this.filterExcludeBranches(
             includedBranches,
             flags['exclude-pattern'] || [],
+            flags['base-branch'],
         );
 
+        console.log(branchesToProcess);
+        this.exit(0);
+
         // https://stackoverflow.com/a/501461/3016520
+
+        const branchMap: { [branch: string]: string } = {};
+        const failedBranches: string[] = [];
+        for (const branch of branchesToProcess) {
+            try {
+                await executeCommand(
+                    `git checkout ${branch}`,
+                    console.log,
+                    console.error,
+                );
+                branchMap[branch] = await executeCommand(
+                    `git merge --no-commit ${flags['base-branch']}`,
+                    console.log,
+                    console.error,
+                );
+            } catch (e) {
+                branchMap[branch] = ((e as any) || {}).message;
+                failedBranches.push(branch);
+            }
+        }
     }
 
     private filterIncludedBranches(branches: string[], includeRegex: string[]) {
@@ -87,13 +111,17 @@ export default class Merge extends Command {
         );
     }
 
-    private filterExcludeBranches(branches: string[], excludeRegex: string[]) {
+    private filterExcludeBranches(
+        branches: string[],
+        excludeRegex: string[],
+        baseBranch: string,
+    ) {
         if (excludeRegex.length === 0) {
-            return excludeRegex;
+            return branches;
         }
         const regexPatterns = excludeRegex.map((reg) => new RegExp(reg));
-        return branches.filter(
-            (branch) => !regexPatterns.some((reg) => reg.test(branch)),
-        );
+        return branches
+            .filter((branch) => !regexPatterns.some((reg) => reg.test(branch)))
+            .filter((branch) => branch !== baseBranch);
     }
 }
