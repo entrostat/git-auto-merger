@@ -9,7 +9,6 @@ export async function safeCommand(
     try {
         return executeCommand(command, log, error, dryRun);
     } catch (e) {
-        console.error('An error has occurred', e);
         return undefined;
     }
 }

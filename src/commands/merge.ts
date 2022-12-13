@@ -109,14 +109,13 @@ export default class Merge extends Command {
             }
         }
 
-        this.log(`Failed to merge ${failedBranches.length} branches`);
-
-        outputErrorTable(failedBranches, branchMap);
-
         if (failedBranches.length === 0) {
             this.log('No failed branches, happy days!');
             this.exit(0);
         }
+
+        this.log(`Failed to merge ${failedBranches.length} branches`);
+        outputErrorTable(failedBranches, branchMap);
 
         this.error(`Found ${failedBranches.length} failed branches...`, {
             code: failedBranches.length.toString(),
