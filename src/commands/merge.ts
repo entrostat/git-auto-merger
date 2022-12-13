@@ -1,4 +1,5 @@
 import { Command, Flags } from '@oclif/core';
+import { executeCommand } from '../shared/execute-command';
 
 export default class Merge extends Command {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
@@ -17,14 +18,14 @@ export default class Merge extends Command {
         'exclude-pattern': Flags.string({
             char: 'e',
             description:
-                'The regex pattern(s) to exclude when running a merge. For example: /^main$/',
+                'The regex pattern(s) to exclude when running a merge. For example: ^main$',
             multiple: true,
             required: false,
         }),
         'include-pattern': Flags.string({
             char: 'i',
             description:
-                'The regex patterns(s) to include when running a merge. For example: /\\/feature\\/.+/',
+                'The regex patterns(s) to include when running a merge. For example: feature.+',
             multiple: true,
             required: false,
         }),
@@ -41,6 +42,58 @@ export default class Merge extends Command {
     public async run(): Promise<void> {
         const { flags } = await this.parse(Merge);
 
+        this.log(`> Exclusion Rules: ${flags['exclude-pattern']?.length || 0}
+> Inclusion Rules: ${flags['include-pattern']?.length || 0}
+        `);
+
+        const branches = await executeCommand(
+            `git branch --list`,
+            console.log,
+            console.error,
+        ).then((b) =>
+            b
+                .split('\n')
+                .map((name) => name.replace('* ', ''))
+                .map((name) => name.trim())
+                .filter((name) => name.length),
+        );
+
+        this.log(`Found a total of ${branches.length} branches`);
+
+        const includedBranches = this.filterIncludedBranches(
+            branches,
+            flags['include-pattern'] || [],
+        );
+
+        this.log(
+            `After processing include filters, we have ${includedBranches.length} branches`,
+        );
+
+        const branchesToProcess = this.filterExcludeBranches(
+            includedBranches,
+            flags['exclude-pattern'] || [],
+        );
+
         // https://stackoverflow.com/a/501461/3016520
+    }
+
+    private filterIncludedBranches(branches: string[], includeRegex: string[]) {
+        if (includeRegex.length === 0) {
+            return branches;
+        }
+        const regexPatterns = includeRegex.map((reg) => new RegExp(reg));
+        return branches.filter((branch) =>
+            regexPatterns.some((reg) => reg.test(branch)),
+        );
+    }
+
+    private filterExcludeBranches(branches: string[], excludeRegex: string[]) {
+        if (excludeRegex.length === 0) {
+            return excludeRegex;
+        }
+        const regexPatterns = excludeRegex.map((reg) => new RegExp(reg));
+        return branches.filter(
+            (branch) => !regexPatterns.some((reg) => reg.test(branch)),
+        );
     }
 }
