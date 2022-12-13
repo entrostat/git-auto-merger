@@ -1,5 +1,6 @@
-import { Command, Flags } from '@oclif/core';
+import { Command, Flags, CliUx } from '@oclif/core';
 import { executeCommand } from '../shared/execute-command';
+import { safeCommand } from '../shared/safe-command';
 
 export default class Merge extends Command {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
@@ -75,8 +76,6 @@ export default class Merge extends Command {
             flags['base-branch'],
         );
 
-        console.log(branchesToProcess);
-
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
@@ -96,10 +95,48 @@ export default class Merge extends Command {
             } catch (e) {
                 branchMap[branch] = ((e as any) || {}).message;
                 failedBranches.push(branch);
+                branchMap[branch] =
+                    branchMap[branch] ||
+                    (await safeCommand(
+                        'git status',
+                        console.log,
+                        console.error,
+                    )) ||
+                    '';
+                await safeCommand(
+                    'git merge --abort',
+                    console.log,
+                    console.error,
+                );
             }
         }
 
-        console.log({ branchMap, failedBranches });
+        this.log(`Failed to merge ${failedBranches.length} branches`);
+
+        const tableData = [];
+        for (const failedBranch of failedBranches) {
+            tableData.push({
+                branch: failedBranch,
+                error: branchMap[failedBranch],
+            });
+        }
+        CliUx.Table.table(tableData, {
+            branch: {
+                header: 'Branch',
+            },
+            error: {
+                header: 'Error',
+            },
+        });
+
+        if (failedBranches.length === 0) {
+            this.log('No failed branches, happy days!');
+            this.exit(0);
+        }
+
+        this.error(`Found ${failedBranches.length} failed branches...`, {
+            code: failedBranches.length.toString(),
+        });
     }
 
     private filterIncludedBranches(branches: string[], includeRegex: string[]) {
