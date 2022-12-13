@@ -6,7 +6,7 @@ export default class SetCredentialsSmtp extends BaseCommand {
         'Set the SMTP credentials that should be used to send the alert';
 
     static examples = [
-        '<%= config.bin %> <%= command.id %>  --host=smtp.postmarkapp.com --port=587 --username=xxxxx-xxxxx-xxxxx --password=xxxxx-xxxxx-xxxxx --tls',
+        '<%= config.bin %> <%= command.id %>  --host=smtp.postmarkapp.com --port=587 --username=xxxxx-xxxxx-xxxxx --password=xxxxx-xxxxx-xxxxx --tls --from=info@example.com',
     ];
 
     static flags = {
@@ -35,6 +35,12 @@ export default class SetCredentialsSmtp extends BaseCommand {
             description: 'TLS enabled',
             default: false,
         }),
+        from: Flags.string({
+            char: 'f',
+            description: 'The from email address',
+            required: true,
+            aliases: ['from-address'],
+        }),
     };
 
     static args = [];
@@ -48,6 +54,7 @@ export default class SetCredentialsSmtp extends BaseCommand {
                 host: flags.host,
                 port: Number(flags.port),
                 tls: flags.tls,
+                fromAddress: flags.from,
             },
         });
         this.log('SMTP details saved successfully');

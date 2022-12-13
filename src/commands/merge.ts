@@ -1,14 +1,19 @@
-import { Command, Flags } from '@oclif/core';
+import { Flags } from '@oclif/core';
 import { getGitBranches } from '../shared/git/get-git-branches';
 import { mergeBranch } from '../shared/git/merge-branch';
 import { outputErrorTable } from '../shared/output-error-table';
+import { sendMergeFailedEmailNotification } from '../shared/notifications/email/send-merge-failed.email-notification';
+import { BaseCommand } from '../shared/base-command';
+import { Config } from '../shared/config';
 
-export default class Merge extends Command {
+export default class Merge extends BaseCommand {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
 
         Exclusion takes preference over inclusion, so we will ignore a branch if it triggers in the include and exclude patterns.`;
 
-    static examples = ['<%= config.bin %> <%= command.id %>'];
+    static examples = [
+        `<%= config.bin %> <%= command.id %> --base-branch=develop --include-pattern='develop$' --include-pattern='feature\/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test`,
+    ];
 
     static flags = {
         'base-branch': Flags.string({
@@ -31,11 +36,24 @@ export default class Merge extends Command {
             multiple: true,
             required: false,
         }),
-        'send-notification-smtp': Flags.boolean({
+        'project-name': Flags.string({
+            char: 'P',
+            description:
+                'The name of the project when sending the notification',
+            relationships: [
+                {
+                    type: 'some',
+                    flags: ['notify-email'],
+                },
+            ],
+        }),
+        'notify-email': Flags.string({
             char: 'm',
             description:
                 'Send a notification via SMTP if the merge cannot take place',
-            default: false,
+            required: false,
+            dependsOn: ['project-name'],
+            multiple: true,
         }),
         commit: Flags.boolean({
             char: 'c',
@@ -43,7 +61,7 @@ export default class Merge extends Command {
             default: false,
         }),
         'push-commit': Flags.boolean({
-            char: 'p',
+            char: 'P',
             description: 'Push the changes of the merge',
             default: false,
         }),
@@ -79,6 +97,12 @@ export default class Merge extends Command {
             baseBranch,
         );
 
+        this.log(
+            `After processing exclude filters, we have ${branchesToProcess.length} branches:`,
+        );
+
+        branchesToProcess.forEach((branch) => this.log(` > ${branch}`));
+
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
@@ -98,18 +122,45 @@ export default class Merge extends Command {
             }
         }
 
-        this.log(`Failed to merge ${failedBranches.length} branches`);
-
-        outputErrorTable(failedBranches, branchMap);
-
         if (failedBranches.length === 0) {
             this.log('No failed branches, happy days!');
             this.exit(0);
         }
 
+        this.log(`Failed to merge ${failedBranches.length} branches`);
+        outputErrorTable(failedBranches, branchMap);
+
+        const failedBranchMap = this.createFailedBranchMap(
+            failedBranches,
+            branchMap,
+        );
+
+        if (flags['notify-email']) {
+            this.log(
+                `Sending notification emails to ${flags['notify-email'].length} emails`,
+            );
+            await sendMergeFailedEmailNotification(
+                flags['notify-email'],
+                flags['project-name'] || '',
+                failedBranchMap,
+                (await this.getConfig()) as Config,
+            );
+        }
+
         this.error(`Found ${failedBranches.length} failed branches...`, {
             code: failedBranches.length.toString(),
         });
+    }
+
+    private createFailedBranchMap(
+        failedBranches: string[],
+        branchMap: { [p: string]: string },
+    ) {
+        const failedBranchMap: { [branch: string]: string } = {};
+        for (const branch of failedBranches) {
+            failedBranchMap[branch] = branchMap[branch];
+        }
+        return failedBranchMap;
     }
 
     private filterIncludedBranches(branches: string[], includeRegex: string[]) {

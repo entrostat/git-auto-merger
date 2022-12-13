@@ -1,9 +1,8 @@
 import * as fs from 'fs-extra';
-import * as path from 'node:path';
 
-export async function getConfig(folderPath: string): Promise<any> {
+export async function getConfig(filePath: string): Promise<any> {
     try {
-        return await fs.readJSON(path.join(folderPath, 'config.json'));
+        return await fs.readJSON(filePath);
     } catch {
         return {};
     }

@@ -7,7 +7,7 @@ export async function safeCommand(
     dryRun = false,
 ): Promise<string | undefined> {
     try {
-        return executeCommand(command, log, error, dryRun);
+        return executeCommand(`${command} || true`, log, error, dryRun);
     } catch (e) {
         return undefined;
     }
