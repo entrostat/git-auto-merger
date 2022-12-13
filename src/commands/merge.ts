@@ -11,7 +11,9 @@ export default class Merge extends BaseCommand {
 
         Exclusion takes preference over inclusion, so we will ignore a branch if it triggers in the include and exclude patterns.`;
 
-    static examples = ['<%= config.bin %> <%= command.id %>'];
+    static examples = [
+        `<%= config.bin %> <%= command.id %> --base-branch=develop --include-pattern='develop$' --include-pattern='feature\/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test`,
+    ];
 
     static flags = {
         'base-branch': Flags.string({
