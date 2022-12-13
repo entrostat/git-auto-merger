@@ -31,7 +31,6 @@ export async function mergeBranch(
             () => {},
             console.error,
         );
-        console.log('SAFE merge abort');
         await safeCommand('git merge --abort', () => {}, console.error);
         return {
             error: true,
