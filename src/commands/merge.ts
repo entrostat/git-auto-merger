@@ -46,7 +46,6 @@ export default class Merge extends Command {
             char: 'p',
             description: 'Push the changes of the merge',
             default: false,
-            dependsOn: ['commit'],
         }),
     };
 
@@ -84,8 +83,15 @@ export default class Merge extends Command {
 
         const branchMap: { [branch: string]: string } = {};
         const failedBranches: string[] = [];
+        const shouldCommit = flags.commit;
+        const shouldPush = flags['push-commit'];
         for (const branch of branchesToProcess) {
-            const mergeResult = await mergeBranch(branch, baseBranch);
+            const mergeResult = await mergeBranch(
+                branch,
+                baseBranch,
+                shouldCommit,
+                shouldPush,
+            );
             branchMap[branch] = mergeResult.message;
             if (mergeResult.error) {
                 failedBranches.push(branch);
