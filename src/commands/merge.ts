@@ -103,12 +103,8 @@ export default class Merge extends Command {
                         console.error,
                     )) ||
                     '';
-                await safeCommand(
-                    'git merge --abort',
-                    console.log,
-                    console.error,
-                );
             }
+            await safeCommand('git merge --abort', console.log, console.error);
         }
 
         this.log(`Failed to merge ${failedBranches.length} branches`);
