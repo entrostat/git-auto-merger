@@ -136,8 +136,9 @@ export default class Merge extends BaseCommand {
         );
 
         if (flags['notify-email']) {
-            this.log(`Sending notification emails to:`);
-            flags['notify-email'].forEach((email) => this.log(` > ${email}`));
+            this.log(
+                `Sending notification emails to ${flags['notify-email'].length} emails`,
+            );
             await sendMergeFailedEmailNotification(
                 flags['notify-email'],
                 flags['project-name'] || '',
