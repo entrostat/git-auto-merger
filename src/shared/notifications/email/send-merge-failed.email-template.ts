@@ -125,11 +125,14 @@ table.body .article {
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Unfortunately, ${
                             Object.keys(failedBranchMap).length
                         } branches failed to merge. The branches are listed below.</p>
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
+                        <br>
+                        <br>
+                        <br>
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                           <thead>
                             <tr>
-                                <th>Branch</th>
-                                <th>Error</th>
+                                <th style="text-align: left">Branch</th>
+                                <th style="text-align: left">Error</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -147,7 +150,9 @@ table.body .article {
                                 .join('\n')}
                           </tbody>
                         </table>
-
+                        <br>
+                        <br>
+                        <br>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Good luck with the fix :)!</p>
                       </td>
                     </tr>
