@@ -8,6 +8,7 @@ export async function sendMergeFailedEmailNotification(
     failedBranchMap: { [branch: string]: string },
     config: Config,
 ) {
+    console.log({ config });
     const { smtp } = config;
     const transport = createTransport({
         host: smtp.host,
