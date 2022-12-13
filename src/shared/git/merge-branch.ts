@@ -17,11 +17,7 @@ export async function mergeBranch(
         if (shouldPush) {
             await executeCommand('git push', () => {}, console.error);
         } else if (!shouldCommit) {
-            await safeCommand(
-                'git merge --abort',
-                () => {},
-                () => {},
-            );
+            await safeCommand('git merge --abort', () => {}, console.error);
         }
 
         return { error: false, message };
