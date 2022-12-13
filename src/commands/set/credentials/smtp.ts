@@ -39,6 +39,7 @@ export default class SetCredentialsSmtp extends BaseCommand {
             char: 'f',
             description: 'The from email address',
             required: true,
+            aliases: ['from-address'],
         }),
     };
 
