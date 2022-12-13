@@ -14,7 +14,10 @@ export abstract class BaseCommand extends Command {
     }
 
     async saveConfig(config: Partial<Config>) {
-        await saveConfig(this.config.configDir, config);
+        await saveConfig(
+            path.join(this.config.configDir, this.CONFIG_NAME),
+            config,
+        );
     }
 
     async mergeConfig(newKeys: Partial<Config>) {
