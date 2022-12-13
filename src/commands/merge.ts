@@ -1,6 +1,7 @@
-import { Command, Flags, CliUx } from '@oclif/core';
-import { executeCommand } from '../shared/execute-command';
-import { safeCommand } from '../shared/safe-command';
+import { Command, Flags } from '@oclif/core';
+import { getGitBranches } from '../shared/git/get-git-branches';
+import { mergeBranch } from '../shared/git/merge-branch';
+import { outputErrorTable } from '../shared/output-error-table';
 
 export default class Merge extends Command {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
@@ -47,17 +48,9 @@ export default class Merge extends Command {
 > Inclusion Rules: ${flags['include-pattern']?.length || 0}
         `);
 
-        const branches = await executeCommand(
-            `git branch --list`,
-            console.log,
-            console.error,
-        ).then((b) =>
-            b
-                .split('\n')
-                .map((name) => name.replace('* ', ''))
-                .map((name) => name.trim())
-                .filter((name) => name.length),
-        );
+        const baseBranch = flags['base-branch'];
+
+        const branches = await getGitBranches();
 
         this.log(`Found a total of ${branches.length} branches`);
 
@@ -73,7 +66,7 @@ export default class Merge extends Command {
         const branchesToProcess = this.filterExcludeBranches(
             includedBranches,
             flags['exclude-pattern'] || [],
-            flags['base-branch'],
+            baseBranch,
         );
 
         // https://stackoverflow.com/a/501461/3016520
@@ -81,49 +74,16 @@ export default class Merge extends Command {
         const branchMap: { [branch: string]: string } = {};
         const failedBranches: string[] = [];
         for (const branch of branchesToProcess) {
-            try {
-                await executeCommand(
-                    `git checkout ${branch}`,
-                    console.log,
-                    console.error,
-                );
-                branchMap[branch] = await executeCommand(
-                    `git merge --no-commit ${flags['base-branch']}`,
-                    console.log,
-                    console.error,
-                );
-            } catch (e) {
-                branchMap[branch] = ((e as any) || {}).message;
+            const mergeResult = await mergeBranch(branch, baseBranch);
+            branchMap[branch] = mergeResult.message;
+            if (mergeResult.error) {
                 failedBranches.push(branch);
-                branchMap[branch] =
-                    branchMap[branch] ||
-                    (await safeCommand(
-                        'git status',
-                        console.log,
-                        console.error,
-                    )) ||
-                    '';
             }
-            await safeCommand('git merge --abort', console.log, console.error);
         }
 
         this.log(`Failed to merge ${failedBranches.length} branches`);
 
-        const tableData = [];
-        for (const failedBranch of failedBranches) {
-            tableData.push({
-                branch: failedBranch,
-                error: branchMap[failedBranch],
-            });
-        }
-        CliUx.Table.table(tableData, {
-            branch: {
-                header: 'Branch',
-            },
-            error: {
-                header: 'Error',
-            },
-        });
+        outputErrorTable(failedBranches, branchMap);
 
         if (failedBranches.length === 0) {
             this.log('No failed branches, happy days!');
