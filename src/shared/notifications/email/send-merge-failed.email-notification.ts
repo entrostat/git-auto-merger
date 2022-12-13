@@ -1,5 +1,6 @@
 import { createTransport } from 'nodemailer';
 import { Config } from '../../config';
+import { sendMergeFailedEmailTemplate } from './send-merge-failed.email-template';
 
 export async function sendMergeFailedEmailNotification(
     emails: string[],
@@ -18,8 +19,17 @@ export async function sendMergeFailedEmailNotification(
         },
     });
 
+    let text =
+        `${Object.keys(failedBranchMap)} branches failed to merge:\n` +
+        Object.keys(failedBranchMap).map(
+            (key) => `BRANCH: ${key}\n\n${failedBranchMap[key]}\n\n\n`,
+        );
+
     await transport.sendMail({
         from: smtp.fromAddress,
         to: emails,
+        subject: `${projectName} - MERGE ERROR`,
+        html: sendMergeFailedEmailTemplate(failedBranchMap),
+        text,
     });
 }
