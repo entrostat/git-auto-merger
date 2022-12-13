@@ -37,6 +37,16 @@ export default class Merge extends Command {
                 'Send a notification via SMTP if the merge cannot take place',
             default: false,
         }),
+        commit: Flags.boolean({
+            char: 'c',
+            description: 'Commit the changes when the merge takes place',
+            default: false,
+        }),
+        'push-commit': Flags.boolean({
+            char: 'p',
+            description: 'Push the changes of the merge',
+            default: false,
+        }),
     };
 
     static args = [];
@@ -73,8 +83,15 @@ export default class Merge extends Command {
 
         const branchMap: { [branch: string]: string } = {};
         const failedBranches: string[] = [];
+        const shouldCommit = flags.commit;
+        const shouldPush = flags['push-commit'];
         for (const branch of branchesToProcess) {
-            const mergeResult = await mergeBranch(branch, baseBranch);
+            const mergeResult = await mergeBranch(
+                branch,
+                baseBranch,
+                shouldCommit,
+                shouldPush,
+            );
             branchMap[branch] = mergeResult.message;
             if (mergeResult.error) {
                 failedBranches.push(branch);
