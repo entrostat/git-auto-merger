@@ -4,7 +4,7 @@ export interface Config {
         password: string;
         host: string;
         port: number;
-        tls: boolean;
+        tls?: boolean;
         fromAddress: string;
     };
 }
