@@ -31,8 +31,8 @@ export default class Merge extends Command {
             multiple: true,
             required: false,
         }),
-        'notification-project-name': Flags.string({
-            char: 'n',
+        'project-name': Flags.string({
+            char: 'P',
             description:
                 'The name of the project when sending the notification',
             relationships: [
@@ -47,6 +47,7 @@ export default class Merge extends Command {
             description:
                 'Send a notification via SMTP if the merge cannot take place',
             default: false,
+            dependsOn: ['project-name'],
         }),
         commit: Flags.boolean({
             char: 'c',
@@ -54,7 +55,7 @@ export default class Merge extends Command {
             default: false,
         }),
         'push-commit': Flags.boolean({
-            char: 'p',
+            char: 'P',
             description: 'Push the changes of the merge',
             default: false,
         }),
