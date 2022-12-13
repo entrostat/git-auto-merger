@@ -5,7 +5,9 @@ export default class SetCredentialsSmtp extends BaseCommand {
     static description =
         'Set the SMTP credentials that should be used to send the alert';
 
-    static examples = ['<%= config.bin %> <%= command.id %>'];
+    static examples = [
+        '<%= config.bin %> <%= command.id %>  --host=smtp.postmarkapp.com --port=587 --username=xxxxx-xxxxx-xxxxx --password=xxxxx-xxxxx-xxxxx --tls',
+    ];
 
     static flags = {
         host: Flags.string({
