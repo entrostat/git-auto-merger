@@ -37,6 +37,17 @@ export default class Merge extends Command {
                 'Send a notification via SMTP if the merge cannot take place',
             default: false,
         }),
+        commit: Flags.boolean({
+            char: 'c',
+            description: 'Commit the changes when the merge takes place',
+            default: false,
+        }),
+        'push-commit': Flags.boolean({
+            char: 'p',
+            description: 'Push the changes of the merge',
+            default: false,
+            dependsOn: ['commit'],
+        }),
     };
 
     static args = [];
