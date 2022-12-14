@@ -83,6 +83,7 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
         const branches = await getGitBranches();
 
         this.log(`Found a total of ${branches.length} branches`);
+        branches.forEach((branch) => this.log(` > ${branch}`));
 
         const includedBranches = this.filterIncludedBranches(
             branches,
