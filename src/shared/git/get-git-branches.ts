@@ -2,7 +2,7 @@ import { executeCommand } from '../execute-command';
 
 export async function getGitBranches() {
     return await executeCommand(
-        `git branch --list`,
+        `git branch --list --all`,
         console.log,
         console.error,
     ).then((b) =>
