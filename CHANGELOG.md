@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/entrostat/git-auto-merger/compare/v1.3.0...v1.4.0) (2022-12-14)
+
+
+### Features
+
+* **git:** Checkout all of the local branches so that we can merge into each one ([7ff4937](https://github.com/entrostat/git-auto-merger/commit/7ff49370f60c055980e65577ab6a6b6a61543075))
+
 ## [1.3.0](https://github.com/entrostat/git-auto-merger/compare/v1.2.0...v1.3.0) (2022-12-14)
 
 
