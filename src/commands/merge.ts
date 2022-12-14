@@ -101,7 +101,7 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
         );
 
         this.log(
-            `After processing exclude filters, we have ${branchesToProcess.length} branches:`,
+            `After processing exclude filters, we have ${branchesToProcess.length} branches`,
         );
 
         branchesToProcess.forEach((branch) => this.log(` > ${branch}`));
