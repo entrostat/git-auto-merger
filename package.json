@@ -1,15 +1,15 @@
 {
-  "name": "git-automerge",
+  "name": "git-auto-merge",
   "version": "1.0.0",
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
     "git-automerge": "./bin/run"
   },
-  "homepage": "https://github.com/entrostat/git-automerge",
+  "homepage": "https://github.com/entrostat/git-auto-merge",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "entrostat/git-automerge",
+  "repository": "entrostat/git-auto-merge",
   "files": [
     "/bin",
     "/dist",
@@ -44,8 +44,8 @@
     "typescript": "^4.9.4"
   },
   "oclif": {
-    "bin": "git-automerge",
-    "dirname": "git-automerge",
+    "bin": "git-auto-merge",
+    "dirname": "git-auto-merge",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help"
@@ -71,7 +71,7 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "bugs": "https://github.com/entrostat/git-automerge/issues",
+  "bugs": "https://github.com/entrostat/git-auto-merge/issues",
   "keywords": [
     "oclif"
   ],
