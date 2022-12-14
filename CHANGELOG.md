@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/entrostat/git-auto-merger/compare/v1.5.2...v1.6.0) (2022-12-14)
+
+
+### Features
+
+* **logging:** Use git status instead of git diff so get a better overview of the merge conflicts ([23e512b](https://github.com/entrostat/git-auto-merger/commit/23e512b52176f3ad4f9e0fa4cdac11a26f9329c4))
+
 ### [1.5.2](https://github.com/entrostat/git-auto-merger/compare/v1.5.1...v1.5.2) (2022-12-14)
 
 
