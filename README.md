@@ -16,11 +16,11 @@ This CLI helps to create an auto-merge functionality for git. When it fails to m
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @entrostat/git-auto-merger
+$ npm install -g git-auto-merger
 $ git-auto-merger COMMAND
 running command...
 $ git-auto-merger (--version)
-@entrostat/git-auto-merger/1.0.3 linux-x64 node-v16.15.0
+git-auto-merger/1.1.0 linux-x64 node-v16.15.0
 $ git-auto-merger --help [COMMAND]
 USAGE
   $ git-auto-merger COMMAND
@@ -81,7 +81,7 @@ EXAMPLES
  --include-pattern='feature/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test
 ```
 
-_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v1.0.3/dist/commands/merge.ts)_
+_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v1.1.0/dist/commands/merge.ts)_
 
 ## `git-auto-merger set credentials smtp`
 
