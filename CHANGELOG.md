@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/entrostat/git-auto-merger/compare/v1.5.1...v1.5.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* **git:** Allow unrelated histories ([6a7fab9](https://github.com/entrostat/git-auto-merger/commit/6a7fab9e82a96dbb666135c791ab4607176e7692))
+
 ### [1.5.1](https://github.com/entrostat/git-auto-merger/compare/v1.5.0...v1.5.1) (2022-12-14)
 
 
