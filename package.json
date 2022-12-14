@@ -67,7 +67,7 @@
     "version": "oclif readme && git add README.md",
     "release": "entro-version --master-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
     "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
-    "package:publish": "echo 'You must run this with npm not yarn!' && git checkout main && npm publish"
+    "package:publish": "echo 'You must run this with npm not yarn!' && git checkout main && npm publish && git checkout develop"
   },
   "engines": {
     "node": ">=16.0.0"
