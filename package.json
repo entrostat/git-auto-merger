@@ -1,6 +1,6 @@
 {
   "name": "@entrostat/git-auto-merge",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {

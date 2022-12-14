@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/entrostat/git-auto-merge/compare/v1.0.2...v1.0.3) (2022-12-14)
+
+
+### Bug Fixes
+
+* **name:** Changed the name to allow us to publish to npm ([86c82e9](https://github.com/entrostat/git-auto-merge/commit/86c82e919524d726162dcfb38656289b53833f1d))
+
 ### [1.0.2](https://github.com/entrostat/git-auto-merge/compare/v1.0.1...v1.0.2) (2022-12-14)
 
 
