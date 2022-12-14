@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/entrostat/git-auto-merger/compare/v1.1.0...v1.1.1) (2022-12-14)
+
+
+### Bug Fixes
+
+* **build:** Added a note about running with npm not yarn ([bf66617](https://github.com/entrostat/git-auto-merger/commit/bf66617cc0277c0902970fb23cafbd556fca1dd9))
+* **build:** Check out the develop branch after publishing ([25e9d30](https://github.com/entrostat/git-auto-merger/commit/25e9d306f85e892d600a1f7e753ce8ad5334df08))
+
 ## [1.1.0](https://github.com/entrostat/git-auto-merger/compare/v1.0.3...v1.1.0) (2022-12-14)
 
 
