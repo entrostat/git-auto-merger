@@ -1,6 +1,6 @@
 {
   "name": "git-automerge",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
@@ -19,19 +19,25 @@
   "dependencies": {
     "@oclif/core": "^1.21.0",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.1.7"
+    "@oclif/plugin-plugins": "^2.1.7",
+    "fs-extra": "^11.1.0",
+    "nodemailer": "^6.8.0"
   },
   "devDependencies": {
     "@oclif/test": "^2.2.13",
     "@types/chai": "^4",
+    "@types/fs-extra": "^9.0.13",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.18.7",
+    "@types/nodemailer": "^6.4.6",
     "chai": "^4",
+    "entro-version": "^1.7.0",
     "eslint": "^7.32.0",
     "eslint-config-oclif": "^4",
     "eslint-config-oclif-typescript": "^1.0.3",
     "mocha": "^9",
     "oclif": "^3",
+    "prettier": "^2.8.1",
     "shx": "^0.3.3",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.1",
@@ -42,13 +48,12 @@
     "dirname": "git-automerge",
     "commands": "./dist/commands",
     "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-help"
     ],
     "topicSeparator": " ",
     "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
+      "set": {
+        "description": "Set variables in the config for later use"
       }
     }
   },
@@ -59,7 +64,9 @@
     "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md"
+    "version": "oclif readme && git add README.md",
+    "release": "entro-version --master-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
+    "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\""
   },
   "engines": {
     "node": ">=12.0.0"
