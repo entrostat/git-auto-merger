@@ -74,7 +74,15 @@
   },
   "bugs": "https://github.com/entrostat/git-auto-merger/issues",
   "keywords": [
-    "oclif"
+    "oclif",
+    "cli",
+    "git",
+    "merge",
+    "ci",
+    "cd",
+    "pipeline",
+    "git-flow",
+    "auto-merge"
   ],
   "types": "dist/index.d.ts"
 }
