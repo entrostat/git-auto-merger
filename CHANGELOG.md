@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/entrostat/git-auto-merger/compare/v1.1.1...v1.1.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* **keywords:** Added keywords for the CLI ([4a39aca](https://github.com/entrostat/git-auto-merger/commit/4a39acaf7c85f3bacc210801f2d303238cc54a36))
+
 ### [1.1.1](https://github.com/entrostat/git-auto-merger/compare/v1.1.0...v1.1.1) (2022-12-14)
 
 
