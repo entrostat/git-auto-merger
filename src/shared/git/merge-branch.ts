@@ -25,7 +25,7 @@ export async function mergeBranch(
         return { error: false, message };
     } catch (e) {
         const errorMessage = await safeCommand(
-            'git diff --cached',
+            'git status',
             () => {},
             console.error,
         );
