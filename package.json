@@ -66,7 +66,8 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md",
     "release": "entro-version --master-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
-    "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\""
+    "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
+    "package:publish": "git checkout main && npm publish"
   },
   "engines": {
     "node": ">=16.0.0"
