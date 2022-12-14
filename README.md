@@ -16,30 +16,30 @@ This CLI helps to create an auto-merge functionality for git. When it fails to m
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g git-automerge
-$ git-automerge COMMAND
+$ npm install -g git-auto-merge
+$ git-auto-merge COMMAND
 running command...
-$ git-automerge (--version)
-git-automerge/1.0.0 linux-x64 node-v16.15.0
-$ git-automerge --help [COMMAND]
+$ git-auto-merge (--version)
+git-auto-merge/1.0.1 linux-x64 node-v16.15.0
+$ git-auto-merge --help [COMMAND]
 USAGE
-  $ git-automerge COMMAND
+  $ git-auto-merge COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`git-automerge help [COMMAND]`](#git-automerge-help-command)
-* [`git-automerge merge`](#git-automerge-merge)
-* [`git-automerge set credentials smtp`](#git-automerge-set-credentials-smtp)
+* [`git-auto-merge help [COMMAND]`](#git-auto-merge-help-command)
+* [`git-auto-merge merge`](#git-auto-merge-merge)
+* [`git-auto-merge set credentials smtp`](#git-auto-merge-set-credentials-smtp)
 
-## `git-automerge help [COMMAND]`
+## `git-auto-merge help [COMMAND]`
 
-Display help for git-automerge.
+Display help for git-auto-merge.
 
 ```
 USAGE
-  $ git-automerge help [COMMAND] [-n]
+  $ git-auto-merge help [COMMAND] [-n]
 
 ARGUMENTS
   COMMAND  Command to show help for.
@@ -48,18 +48,18 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for git-automerge.
+  Display help for git-auto-merge.
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.19/src/commands/help.ts)_
 
-## `git-automerge merge`
+## `git-auto-merge merge`
 
 Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
 
 ```
 USAGE
-  $ git-automerge merge -b <value> [-e <value>] [-i <value>] [-m <value> -P <value>] [-c] [-P]
+  $ git-auto-merge merge -b <value> [-e <value>] [-i <value>] [-m <value> -P <value>] [-c] [-P]
 
 FLAGS
   -P, --project-name=<value>        The name of the project when sending the notification
@@ -77,19 +77,19 @@ DESCRIPTION
   patterns.
 
 EXAMPLES
-  $ git-automerge merge --base-branch=develop --include-pattern='develop
+  $ git-auto-merge merge --base-branch=develop --include-pattern='develop
  --include-pattern='feature/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test
 ```
 
-_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-automerge/blob/v1.0.0/dist/commands/merge.ts)_
+_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merge/blob/v1.0.1/dist/commands/merge.ts)_
 
-## `git-automerge set credentials smtp`
+## `git-auto-merge set credentials smtp`
 
 Set the SMTP credentials that should be used to send the alert
 
 ```
 USAGE
-  $ git-automerge set credentials smtp -h <value> -u <value> -p <value> -P <value> -f <value> [-s]
+  $ git-auto-merge set credentials smtp -h <value> -u <value> -p <value> -P <value> -f <value> [-s]
 
 FLAGS
   -P, --port=<value>      (required) The SMTP port to use
@@ -103,6 +103,6 @@ DESCRIPTION
   Set the SMTP credentials that should be used to send the alert
 
 EXAMPLES
-  $ git-automerge set credentials smtp  --host=smtp.postmarkapp.com --port=587 --username=xxxxx-xxxxx-xxxxx --password=xxxxx-xxxxx-xxxxx --tls --from=info@example.com
+  $ git-auto-merge set credentials smtp  --host=smtp.postmarkapp.com --port=587 --username=xxxxx-xxxxx-xxxxx --password=xxxxx-xxxxx-xxxxx --tls --from=info@example.com
 ```
 <!-- commandsstop -->
