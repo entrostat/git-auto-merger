@@ -73,7 +73,9 @@ export default class Merge extends BaseCommand {
         const { flags } = await this.parse(Merge);
 
         this.log(`> Exclusion Rules: ${flags['exclude-pattern']?.length || 0}
+${(flags['exclude-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
 > Inclusion Rules: ${flags['include-pattern']?.length || 0}
+${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
         `);
 
         const baseBranch = flags['base-branch'];
