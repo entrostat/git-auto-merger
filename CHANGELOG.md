@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/entrostat/git-auto-merger/compare/v1.0.3...v1.1.0) (2022-12-14)
+
+
+### Features
+
+* **build:** Added the publish package script ([e4ba158](https://github.com/entrostat/git-auto-merger/commit/e4ba158b0ef02c143e5de769aa999fbd876a0145))
+
+
+### Bug Fixes
+
+* **name:** Changed the name from auto-merge to auto-merger ([8759e28](https://github.com/entrostat/git-auto-merger/commit/8759e285424b02f6b314fe6626da0c1a24765450))
+
 ### [1.0.3](https://github.com/entrostat/git-auto-merger/compare/v1.0.2...v1.0.3) (2022-12-14)
 
 
