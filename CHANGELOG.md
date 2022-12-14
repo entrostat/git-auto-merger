@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/entrostat/git-auto-merger/compare/v1.1.2...v1.2.0) (2022-12-14)
+
+
+### Features
+
+* **cli:** Added the patterns that are being filtered on ([b5dca38](https://github.com/entrostat/git-auto-merger/commit/b5dca38cc8d2326041b2d2dfda17c727615ae4bd))
+
 ### [1.1.2](https://github.com/entrostat/git-auto-merger/compare/v1.1.1...v1.1.2) (2022-12-14)
 
 
