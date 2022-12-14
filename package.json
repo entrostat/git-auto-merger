@@ -69,7 +69,7 @@
     "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\""
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.0.0"
   },
   "bugs": "https://github.com/entrostat/git-automerge/issues",
   "keywords": [
