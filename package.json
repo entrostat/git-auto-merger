@@ -4,7 +4,7 @@
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
-    "git-automerge": "./bin/run"
+    "git-auto-merge": "./bin/run"
   },
   "homepage": "https://github.com/entrostat/git-auto-merge",
   "license": "MIT",
