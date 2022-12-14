@@ -14,7 +14,7 @@ export async function getGitBranches() {
 
     const localBranches = await executeCommand(
         `git branch --list`,
-        console.log,
+        () => {},
         console.error,
     ).then((b) =>
         b
