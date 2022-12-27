@@ -20,7 +20,7 @@ $ npm install -g git-auto-merger
 $ git-auto-merger COMMAND
 running command...
 $ git-auto-merger (--version)
-git-auto-merger/2.0.0 linux-x64 node-v16.15.0
+git-auto-merger/2.0.1 linux-x64 node-v16.15.0
 $ git-auto-merger --help [COMMAND]
 USAGE
   $ git-auto-merger COMMAND
@@ -59,12 +59,13 @@ Tries to merge the base branch into all of the other ones that have been specifi
 
 ```
 USAGE
-  $ git-auto-merger merge -b <value> [-e <value>] [-i <value>] [-m <value> -P <value>] [-P]
+  $ git-auto-merger merge -b <value> [-e <value>] [-i <value>] [-m <value> -P <value>] [-c] [-P]
 
 FLAGS
   -P, --project-name=<value>        The name of the project when sending the notification
   -P, --push-commit                 Push the changes of the merge
   -b, --base-branch=<value>         (required) The base branch that we want to merge into other branches
+  -c, --commit                      Commit the changes when the merge takes place
   -e, --exclude-pattern=<value>...  The regex pattern(s) to exclude when running a merge. For example: ^main$
   -i, --include-pattern=<value>...  The regex patterns(s) to include when running a merge. For example: feature.+
   -m, --notify-email=<value>...     Send a notification via SMTP if the merge cannot take place
@@ -80,7 +81,7 @@ EXAMPLES
  --include-pattern='feature/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test
 ```
 
-_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v2.0.0/dist/commands/merge.ts)_
+_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v2.0.1/dist/commands/merge.ts)_
 
 ## `git-auto-merger set credentials smtp`
 

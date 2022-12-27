@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [2.0.1](https://github.com/entrostat/git-auto-merger/compare/v2.0.0...v2.0.1) (2022-12-27)
+
+
+### Bug Fixes
+
+* **merge:** Added the commit flag back ([67ef323](https://github.com/entrostat/git-auto-merger/commit/67ef323f4c524a603353341aa764bc0c2605a204))
+* **merge:** Set the commit flag to true if you set that the merge should push ([dfe341d](https://github.com/entrostat/git-auto-merger/commit/dfe341d98cff3986b37701153ec55757520f3849))
+
 ## [2.0.0](https://github.com/entrostat/git-auto-merger/compare/v1.6.1...v2.0.0) (2022-12-27)
 
 
