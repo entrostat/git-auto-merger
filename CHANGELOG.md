@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0](https://github.com/entrostat/git-auto-merger/compare/v1.6.1...v2.0.0) (2022-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **merge:** Removed the ability to skip the commit in the merge because we need to know if the merge was successful
+
+### Features
+
+* **merge:** Removed the ability to skip the commit in the merge because we need to know if the merge was successful ([dc8b6f9](https://github.com/entrostat/git-auto-merger/commit/dc8b6f9a8684cbc77e2f9edd91f9ed6d8bdbff32))
+
 ### [1.6.1](https://github.com/entrostat/git-auto-merger/compare/v1.6.0...v1.6.1) (2022-12-27)
 
 
