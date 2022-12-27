@@ -106,6 +106,9 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
 
         branchesToProcess.forEach((branch) => this.log(` > ${branch}`));
 
+        this.log(
+            `Merging the base branch ${baseBranch} into the other branches`,
+        );
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
