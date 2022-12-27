@@ -55,6 +55,11 @@ export default class Merge extends BaseCommand {
             dependsOn: ['project-name'],
             multiple: true,
         }),
+        commit: Flags.boolean({
+            char: 'c',
+            description: 'Commit the changes when the merge takes place',
+            default: false,
+        }),
         'push-commit': Flags.boolean({
             char: 'P',
             description: 'Push the changes of the merge',
@@ -108,11 +113,13 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
 
         const branchMap: { [branch: string]: string } = {};
         const failedBranches: string[] = [];
+        const shouldCommit = flags.commit;
         const shouldPush = flags['push-commit'];
         for (const branch of branchesToProcess) {
             const mergeResult = await mergeBranch(
                 branch,
                 baseBranch,
+                shouldCommit,
                 shouldPush,
             );
             branchMap[branch] = mergeResult.message;
