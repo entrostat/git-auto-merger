@@ -1,6 +1,6 @@
 {
   "name": "git-auto-merger",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
@@ -33,7 +33,7 @@
     "@types/node": "^16.18.7",
     "@types/nodemailer": "^6.4.6",
     "chai": "^4",
-    "entro-version": "^1.7.0",
+    "entro-version": "^3.0.0",
     "eslint": "^7.32.0",
     "eslint-config-oclif": "^4",
     "eslint-config-oclif-typescript": "^1.0.3",
@@ -67,8 +67,8 @@
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md",
-    "release": "entro-version --master-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
-    "release:major": "entro-version --master-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
+    "release": "entro-version release --main-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
+    "release:major": "entro-version release --main-branch-name=main --standard-version-flags=\"--release-as=major\" --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the build files'\"",
     "package:publish": "echo 'You must run this with npm not yarn!' && git checkout main && npm publish && git checkout develop"
   },
   "engines": {
