@@ -1,6 +1,14 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+### [1.6.1](https://github.com/entrostat/git-auto-merger/compare/v1.6.0...v1.6.1) (2022-12-27)
+
+
+### Bug Fixes
+
+* **logging:** Added the base merge branch to the logs ([7eedbb9](https://github.com/entrostat/git-auto-merger/commit/7eedbb96efcbb9e3403a9f41e5b13d5647d43635))
+* **version:** Installed the latest version of entro-version for release management ([83be550](https://github.com/entrostat/git-auto-merger/commit/83be5502ec78e3129e1308e39f45ed9f8cef11ee))
 
 ## [1.6.0](https://github.com/entrostat/git-auto-merger/compare/v1.5.2...v1.6.0) (2022-12-14)
 
