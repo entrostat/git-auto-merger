@@ -125,6 +125,8 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
             branchMap[branch] = mergeResult.message;
             if (mergeResult.error) {
                 failedBranches.push(branch);
+            } else {
+                this.log(` - Merged ${baseBranch} into ${branch} successfully`);
             }
         }
 
