@@ -8,28 +8,32 @@ export async function mergeBranch(
     shouldPush: boolean,
 ) {
     try {
-        await executeCommand(`git checkout ${branch}`, () => {}, console.error);
+        await executeCommand(
+            `git checkout ${branch}`,
+            console.log,
+            console.error,
+        );
         const message = await executeCommand(
-            `export GIT_MERGE_AUTOEDIT=no && git merge --no-edit --allow-unrelated-histories ${
+            `git merge --no-edit --allow-unrelated-histories ${
                 shouldCommit || shouldPush ? '' : '--no-commit'
             } ${baseBranch}`,
-            () => {},
+            console.log,
             console.error,
         );
         if (shouldPush) {
-            await executeCommand('git push', () => {}, console.error);
+            await executeCommand('git push', console.log, console.error);
         } else if (!shouldCommit) {
-            await safeCommand('git merge --abort', () => {}, console.error);
+            await safeCommand('git merge --abort', console.log, console.error);
         }
 
         return { error: false, message };
     } catch (e) {
         const errorMessage = await safeCommand(
             'git status',
-            () => {},
+            console.log,
             console.error,
         );
-        await safeCommand('git merge --abort', () => {}, console.error);
+        await safeCommand('git merge --abort', console.log, console.error);
         return {
             error: true,
             message: errorMessage || 'ERROR',
