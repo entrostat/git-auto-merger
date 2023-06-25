@@ -6,6 +6,7 @@ export async function sendMergeFailedEmailNotification(
     emails: string[],
     projectName: string,
     failedBranchMap: { [branch: string]: string },
+    baseBranch: string,
     config: Config,
 ) {
     const { smtp } = config;
@@ -32,7 +33,7 @@ export async function sendMergeFailedEmailNotification(
         from: smtp.fromAddress,
         to: emails,
         subject: `${projectName} - MERGE ERROR`,
-        html: sendMergeFailedEmailTemplate(failedBranchMap),
+        html: sendMergeFailedEmailTemplate(failedBranchMap, baseBranch),
         text,
     });
 }

@@ -162,6 +162,7 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
                 flags['notify-email'],
                 flags['project-name'] || '',
                 failedBranchMap,
+                baseBranch,
                 (await this.getConfig()) as Config,
             );
         }
