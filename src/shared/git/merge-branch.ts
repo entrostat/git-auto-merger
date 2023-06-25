@@ -10,7 +10,7 @@ export async function mergeBranch(
     try {
         await executeCommand(`git checkout ${branch}`, () => {}, console.error);
         const message = await executeCommand(
-            `git merge --allow-unrelated-histories ${
+            `git merge --no-edit --allow-unrelated-histories ${
                 shouldCommit || shouldPush ? '' : '--no-commit'
             } ${baseBranch}`,
             () => {},
