@@ -16,6 +16,7 @@ export async function executeCommand(
         exec(command, (err, stdout, stderr) => {
             if (err) {
                 error(`An ERROR has occurred:\n${err?.message || stderr}`);
+                error(JSON.stringify(err || stderr || ''));
                 return reject(stderr);
             }
 
