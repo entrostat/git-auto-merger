@@ -17,7 +17,7 @@ export async function mergeBranch(
             `git merge --no-edit --verbose --no-ff --allow-unrelated-histories ${
                 shouldCommit || shouldPush ? '' : '--no-commit'
             } ${baseBranch}`,
-            console.log,
+            () => {},
             console.error,
         );
         if (shouldPush) {
