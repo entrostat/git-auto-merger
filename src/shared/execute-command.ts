@@ -15,7 +15,7 @@ export async function executeCommand(
         log(`${command}`);
         exec(command, (err, stdout, stderr) => {
             if (err) {
-                error(`An ERROR has occurred:\n${stderr}`);
+                error(`An ERROR has occurred:\n${err?.message || stderr}`);
                 return reject(stderr);
             }
 
