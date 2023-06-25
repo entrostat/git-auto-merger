@@ -20,6 +20,7 @@ export async function executeCommand(
                         err?.message || stderr
                     }\n${JSON.stringify(err || stderr || '')}`,
                 );
+                error(`Standard output with error: ${stdout}`);
                 return reject(stderr);
             }
 
