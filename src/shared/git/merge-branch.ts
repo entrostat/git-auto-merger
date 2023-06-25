@@ -13,6 +13,7 @@ export async function mergeBranch(
             console.log,
             console.error,
         );
+        await executeCommand(`git pull`, console.log, console.error);
         const message = await executeCommand(
             `git merge --no-edit --verbose --allow-unrelated-histories ${
                 shouldCommit || shouldPush ? '' : '--no-commit'
@@ -21,19 +22,19 @@ export async function mergeBranch(
             console.error,
         );
         if (shouldPush) {
-            await executeCommand('git push', console.log, console.error);
+            await executeCommand('git push', () => {}, console.error);
         } else if (!shouldCommit) {
-            await safeCommand('git merge --abort', console.log, console.error);
+            await safeCommand('git merge --abort', () => {}, console.error);
         }
 
         return { error: false, message };
     } catch (e) {
         const errorMessage = await safeCommand(
             'git status',
-            console.log,
+            () => {},
             console.error,
         );
-        await safeCommand('git merge --abort', console.log, console.error);
+        await safeCommand('git merge --abort', () => {}, console.error);
         return {
             error: true,
             message: errorMessage || 'ERROR',

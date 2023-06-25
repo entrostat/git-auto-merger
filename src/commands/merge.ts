@@ -5,6 +5,7 @@ import { outputErrorTable } from '../shared/output-error-table';
 import { sendMergeFailedEmailNotification } from '../shared/notifications/email/send-merge-failed.email-notification';
 import { BaseCommand } from '../shared/base-command';
 import { Config } from '../shared/config';
+import { executeCommand } from '../shared/execute-command';
 
 export default class Merge extends BaseCommand {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
@@ -109,6 +110,12 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
         this.log(
             `Merging the base branch ${baseBranch} into the other branches`,
         );
+        await executeCommand(
+            `git checkout ${baseBranch}`,
+            console.log,
+            console.error,
+        );
+        await executeCommand(`git pull`, console.log, console.error);
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
