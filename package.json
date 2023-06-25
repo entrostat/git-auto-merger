@@ -1,6 +1,6 @@
 {
   "name": "git-auto-merger",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A CLI to help merge branches into other branches and send alerts if they fail.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
