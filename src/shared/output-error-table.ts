@@ -22,7 +22,7 @@ export function outputErrorTable(
 
         tableData.push({
             branch: failedBranch,
-            error: branchMap[failedBranch],
+            error,
         });
     }
     CliUx.Table.table(tableData, {
