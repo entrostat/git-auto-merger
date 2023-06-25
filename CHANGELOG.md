@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [2.0.4](https://github.com/entrostat/git-auto-merger/compare/v2.0.3...v2.0.4) (2023-06-25)
+
+
+### Bug Fixes
+
+* **merge:** Added the --no-edit flag so that we don't open the edit message on a merge ([397a732](https://github.com/entrostat/git-auto-merger/commit/397a732270b95077e0596db10d338e0458107f0c))
+* **merge:** Export the GIT_MERGE_AUTOEDIT=no environment variable to prevent the merge window whenever possible ([01d7424](https://github.com/entrostat/git-auto-merger/commit/01d7424641eef6b6ce19ce852dea8cf47a9618bc))
+
 ### [2.0.3](https://github.com/entrostat/git-auto-merger/compare/v2.0.2...v2.0.3) (2023-06-25)
 
 
