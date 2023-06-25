@@ -20,7 +20,7 @@ $ npm install -g git-auto-merger
 $ git-auto-merger COMMAND
 running command...
 $ git-auto-merger (--version)
-git-auto-merger/2.0.10 linux-x64 node-v16.19.0
+git-auto-merger/2.0.11 linux-x64 node-v16.19.0
 $ git-auto-merger --help [COMMAND]
 USAGE
   $ git-auto-merger COMMAND
@@ -81,7 +81,7 @@ EXAMPLES
  --include-pattern='feature/.*' --exclude-pattern='main' --notify-email="dev@example.com" --project-name=Test
 ```
 
-_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v2.0.10/dist/commands/merge.ts)_
+_See code: [dist/commands/merge.ts](https://github.com/entrostat/git-auto-merger/blob/v2.0.11/dist/commands/merge.ts)_
 
 ## `git-auto-merger set credentials smtp`
 

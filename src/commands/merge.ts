@@ -78,6 +78,8 @@ ${(flags['exclude-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
 > Inclusion Rules: ${flags['include-pattern']?.length || 0}
 ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
         `);
+        this.log(`> Should Commit: ${flags.commit}`);
+        this.log(`> Should Push: ${flags['push-commit']}`);
 
         const baseBranch = flags['base-branch'];
 
@@ -115,7 +117,6 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
             console.log,
             console.error,
         );
-        await executeCommand(`git pull`, console.log, console.error);
         // https://stackoverflow.com/a/501461/3016520
 
         const branchMap: { [branch: string]: string } = {};
