@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.0](https://github.com/entrostat/git-auto-merger/compare/v2.2.0...v2.3.0) (2023-06-25)
+
+
+### Features
+
+* **email:** Updated the message to include the base branch so that it makes more sense ([01e01ed](https://github.com/entrostat/git-auto-merger/commit/01e01edb6ee6096523f4f9b7c35f34c905240c93))
+
 ## [2.2.0](https://github.com/entrostat/git-auto-merger/compare/v2.1.0...v2.2.0) (2023-06-25)
 
 
