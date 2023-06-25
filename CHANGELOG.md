@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [2.0.7](https://github.com/entrostat/git-auto-merger/compare/v2.0.6...v2.0.7) (2023-06-25)
+
+
+### Bug Fixes
+
+* **merge:** Use the verbose flag to output the issues that are taking place ([1b13275](https://github.com/entrostat/git-auto-merger/commit/1b13275b7147555a4b80ba967cd163574eb983a5))
+
 ### [2.0.6](https://github.com/entrostat/git-auto-merger/compare/v2.0.5...v2.0.6) (2023-06-25)
 
 
