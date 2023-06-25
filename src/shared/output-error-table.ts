@@ -1,4 +1,5 @@
 import { CliUx } from '@oclif/core';
+import { concatenateError } from './concatenate-error';
 
 export const ERROR_OUTPUT_TABLE_MAX_ERROR_LINES = 40;
 
@@ -8,17 +9,10 @@ export function outputErrorTable(
 ) {
     const tableData: { error: string; branch: string }[] = [];
     for (const failedBranch of failedBranches) {
-        let error = branchMap[failedBranch];
-        const lines = error.split('\n');
-        if (lines.length > ERROR_OUTPUT_TABLE_MAX_ERROR_LINES) {
-            const halfLines = Math.round(
-                ERROR_OUTPUT_TABLE_MAX_ERROR_LINES / 2,
-            );
-            error =
-                lines.slice(0, halfLines).join('\n') +
-                '\n\n... CONCATENATED OUTPUT ... \n\n' +
-                lines.slice(lines.length - halfLines, lines.length).join('\n');
-        }
+        const error = concatenateError(
+            branchMap[failedBranch],
+            ERROR_OUTPUT_TABLE_MAX_ERROR_LINES,
+        );
 
         tableData.push({
             branch: failedBranch,

@@ -6,6 +6,9 @@ import { sendMergeFailedEmailNotification } from '../shared/notifications/email/
 import { BaseCommand } from '../shared/base-command';
 import { Config } from '../shared/config';
 import { executeCommand } from '../shared/execute-command';
+import { concatenateError } from '../shared/concatenate-error';
+
+export const SMTP_MAX_ERROR_LINES = 20;
 
 export default class Merge extends BaseCommand {
     static description = `Tries to merge the base branch into all of the other ones that have been specified or match a pattern.
@@ -174,7 +177,10 @@ ${(flags['include-pattern'] || []).map((f) => `  - ${f}`).join('\n')}
     ) {
         const failedBranchMap: { [branch: string]: string } = {};
         for (const branch of failedBranches) {
-            failedBranchMap[branch] = branchMap[branch];
+            failedBranchMap[branch] = concatenateError(
+                branchMap[branch],
+                SMTP_MAX_ERROR_LINES,
+            );
         }
         return failedBranchMap;
     }

@@ -22,7 +22,10 @@ export async function sendMergeFailedEmailNotification(
     let text =
         `${Object.keys(failedBranchMap)} branches failed to merge:\n` +
         Object.keys(failedBranchMap).map(
-            (key) => `BRANCH: ${key}\n\n${failedBranchMap[key]}\n\n\n`,
+            (key) =>
+                `BRANCH: ${key}\n\n${failedBranchMap[key]
+                    .replace(/\r\n/gm, '\n')
+                    .replace(/\n/gm, '\r\n')}\n\n\n`,
         );
 
     await transport.sendMail({
