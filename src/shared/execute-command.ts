@@ -15,8 +15,11 @@ export async function executeCommand(
         log(`${command}`);
         exec(command, (err, stdout, stderr) => {
             if (err) {
-                error(`An ERROR has occurred:\n${err?.message || stderr}`);
-                error(JSON.stringify(err || stderr || ''));
+                error(
+                    `An ERROR has occurred: ${
+                        err?.message || stderr
+                    }\n${JSON.stringify(err || stderr || '')}`,
+                );
                 return reject(stderr);
             }
 
